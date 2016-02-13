@@ -8,6 +8,16 @@
   <body>
     <h1>Shortly</h1>
 
+
+
+    <h3>hola</h3>
+    <div id='container' ng-controller="LinksController">
+      <input type="text" class="links" placeholder="link" ng-model="newLink">
+      <button ng-click="getLink(newLink)">submit</button>
+      <h3>Link goes here</h3>
+  <!-- Your html here -->
+    </div>
+
     <!-- the ng-view directive is where our templates will be loaded into when naviagted to -->
     <div ng-view></div>
 

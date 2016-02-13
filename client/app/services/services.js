@@ -1,8 +1,43 @@
 angular.module('shortly.services', [])
 
 .factory('Links', function ($http) {
+   var getLinks=function(){
+   return $http.get({
+     method: 'GET',
+     url:'/api/links',
+     
+
+    }).then(function(res){
+      return res.data;//display to page
+    })
+
+
+  }
+  return {getLinks : getLinks}
   // Your code here
 })
+
+.factory('Links', function($http, $location){
+  var addLinks=function(link){
+    return $http.post({
+      method: 'Post',
+      url: '/api/links',
+      data: link
+
+    }).then(function(res){
+      return res.data
+      $location.path('/api/links')
+    })
+  }
+  return {addLinks:addLinks}
+})
+
+
+
+
+
+
+
 .factory('Auth', function ($http, $location, $window) {
   // Don't touch this Auth service!!!
   // it is responsible for authenticating our user
@@ -44,6 +79,7 @@ angular.module('shortly.services', [])
 
 
   return {
+
     signin: signin,
     signup: signup,
     isAuth: isAuth,
