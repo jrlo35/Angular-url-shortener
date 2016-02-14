@@ -1,37 +1,42 @@
 angular.module('shortly.services', [])
-
+//$scope only for controllers not factories
+//factories don't destroy less volatile than controllers
 .factory('Links', function ($http) {
-   var getLinks=function(){
-   return $http.get({
+  var getLinks=function(){
+    return $http({
      method: 'GET',
      url:'/api/links',
      
 
-    }).then(function(res){
-      return res.data;//display to page
-    })
+    }).then(function(resp){
+      console.log('^^^^^',resp.data)
+      return resp.data;//display to page
+    });
+  };
 
-
-  }
-  return {getLinks : getLinks}
-  // Your code here
-})
-
-.factory('Links', function($http, $location){
-  var addLinks=function(link){
-    return $http.post({
+  var addLink=function(link){//link is object
+    //var obj = { url: link }
+    console.log('link', link)
+    //console.log('obj',obj)
+    return $http({
       method: 'Post',
       url: '/api/links',
-      data: link
-
-    }).then(function(res){
-      return res.data
-      $location.path('/api/links')
+      data: link //{url: 'http://ajdf'} bc needs to be stringified
     })
-  }
-  return {addLinks:addLinks}
-})
+    .then(function(resp){
+      console.log('{{{{{{{{',resp.data)
+      return resp.data
+    })
+  };
 
+
+  //return anything
+  return {
+    getLinks : getLinks,
+    addLink : addLink
+  };
+  // Your code here
+})
 
 
 

@@ -1,6 +1,16 @@
 <div id='container'>
-<!-- Your code here -->
 
+	<form name="addUrlForm" ng-submit="addLink()" novalidate>
+	  <input type='url' name="url" ng-model='link.url' placeholder='input url' required
+	  ng-class="{'error': addUrlForm.$invalid && addUrlForm.$dirty}"/>
+	  <button type="submit" ng-disabled="addUrlForm.$invalid">add link</button>
+
+
+	  <div ng-show="addUrlForm.url.$error.url && addUrlForm.url.$dirty">Not Valid URL.</div>
+	
+<!-- Your code here -->
+    </form>
+   <div> 
 </div>
 
 

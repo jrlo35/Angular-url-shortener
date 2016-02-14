@@ -1,33 +1,27 @@
 angular.module('shortly.links', [])
 //store view object showed to user
-
-.controller('LinksController', function ($scope, Links) {
+//inject factory Links declare in any file
+.controller('LinksController', function ($scope, $location, Links) {
   // Your code here
-    $scope.data={}
-    $scope.getLinks=Links.getLinks
+
+    //how is data getting added to $scope.data
+
+    $scope.data={};
+    
+    $scope.getLinks=function(){
+      Links.getLinks()
+        .then (function(links){
+    	  console.log('!!!!!!!!!!',links)
+    	  $scope.data.links=links;
+    	  console.log('lolol',$scope.data)
+    	})//add to data object 
+    };
+    
+
+   
+    $scope.logout=function(){
+      $location.path('/#/login')
+    }
     $scope.getLinks();
-
-
   
-})
-// .factory('Links', function Links(){
-
-//     var getLinks=function(cb){
-// 	return $http.get({
-// 		method: 'GET',
-// 		url:'/api/links'
-//     }).success(function(data){
-//     	cb(data);//display to page
-//     })
-
-
-// 	}
-// })
-
-// })
-// $scope.links=[];
-//   $scope.addLink= function(){
-//   $scope.links.push({{}})
-//   }
-
-//retrieves links 
+});

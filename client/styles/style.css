@@ -70,15 +70,24 @@ h1 {
 }
 
 .link .visits {
-  float: right;
+  
   margin-right: 10px;
   margin-left: 20px;
 }
 
-.link .visits .count {
+.link {
   font-size: 46px;
   font-weight: 600;
 }
+
+.visits {
+  float:right; 
+}
+.count{
+  font-size: 46px;
+  font-weight: 600;
+}
+
 
 .link .title {
   font-weight: 600;

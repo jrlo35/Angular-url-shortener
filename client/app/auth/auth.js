@@ -5,7 +5,7 @@ angular.module('shortly.auth', [])
 
 .controller('AuthController', function ($scope, $window, $location, Auth) {
   $scope.user = {};
-
+//functions that are called from pages
   $scope.signin = function () {
     Auth.signin($scope.user)
       .then(function (token) {
